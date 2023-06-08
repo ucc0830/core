@@ -5,7 +5,11 @@ public class MemberServiceImpl implements MemberService {
 
     //해당 클래스가 추상화(MemberRepository)와 구체화(MemoryMemberRepository)에 모두 의존하고 있다.
     //DIP(의존관계역전) 룰 위반
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
+
+    public MemberServiceImpl(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     @Override
     public void join(Member member) {
